@@ -13,6 +13,8 @@ return (temp_F - 32.0) * 5.0/9.0;
 
 int main(void)
 {
+    std::cout.precision(15);
+    
     // i++ is equivalent to i += 1 (incrementing)
     for(int i = 0; i < 100; i++)
     {

@@ -118,7 +118,7 @@ int main(void)
 
 
 //Write another fxn that takes a std vector of temps
-#include <iostream>
+/* #include <iostream>
 #include <vector>
 
 std::vector<double> convert_F_to_C_vect(std::vector<double> temperatures)
@@ -167,4 +167,102 @@ int main(void)
     }
 
     return 0;
+} */
+
+
+
+
+
+
+
+
+/*
+//modify temp funct
+#include <iostream>
+//#include <vector> //remove inc vect b/c its included in header file
+#include <stdexcept>
+#include "functions.hpp" //Since incl declaration in header file, no longer need dec first line
+
+//Forward declarations
+//double convert_F_to_C(double temperature); //Forward declaration
+
+std::vector<double> convert_F_to_C_vect(std::vector<double> temperatures)
+{
+    std::vector<double> new_temperatures;
+
+    for (size_t i = 0; i < temperatures.size(); i++)
+    {
+        //double t = (temperatures[i] - 32.0) * (5.0/9.0);
+        double t = convert_F_to_C(temperatures[i]);
+        new_temperatures.push_back(t);
+    }
+  
+    return new_temperatures;
+}
+
+
+double convert_F_to_C(double temperature) 
+{
+    const double absolute_zero = -459.67; //Abs zero in F
+    if(temperature < absolute_zero)
+    {
+        throw std::runtime_error("Given a temperature below absolute zero!"); //saying not to convert if temp is below abs zero
+    }
+    return (temperature - 32.0) * (5.0/9.0);
+}
+int main(void)
+{
+    
+    //std::vector<double> temperatures;
+    //temperatures.push_back(212.0);
+    //temperatures.push_back(32.0);
+    //temperatures.push_back(-40.0);
+   
+    //std::vector<double> new_temperatures = convert_F_to_C(temperatures);
+    //std::cout << new_temperatures.at(0) << std:: endl;
+
+    try {
+        std::cout << convert_F_to_C(-60.0) << std::endl;
+    }
+    catch(std::exception & ex) 
+    {
+        std::cout << "Program encountered an error!" << std::endl;
+        std::cout << ex.what() << std::endl;        
+        return 1;
+    }
+
+    return 0;
+}
+*/
+
+
+
+//Now for functions_main.cpp file //Put main function in functions_main.cpp
+#include <iostream>
+//#include <vector> //remove inc vect b/c its included in header file
+#include <stdexcept>
+#include "functions.hpp" //Now only have two conversion fxns in this file
+
+std::vector<double> convert_F_to_C_vect(std::vector<double> temperatures)
+{
+    std::vector<double> new_temperatures;
+
+    for (size_t i = 0; i < temperatures.size(); i++)
+    {
+        //double t = (temperatures[i] - 32.0) * (5.0/9.0);
+        double t = convert_F_to_C(temperatures[i]);
+        new_temperatures.push_back(t);
+    }
+  
+    return new_temperatures;
+}
+
+double convert_F_to_C(double temperature) 
+{
+    const double absolute_zero = -459.67; //Abs zero in F
+    if(temperature < absolute_zero)
+    {
+        throw std::runtime_error("Given a temperature below absolute zero!"); //saying not to convert if temp is below abs zero
+    }
+    return (temperature - 32.0) * (5.0/9.0);
 }
